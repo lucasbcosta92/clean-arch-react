@@ -3,10 +3,10 @@ import './form-status-styles.scss'
 import React, { useContext } from 'react'
 
 import { Spinner } from '@/presentation/components'
-import Context from '@/presentation/contexts/form/form-context'
+import { FormContext } from '@/presentation/contexts'
 
 const FormStatus: React.FC = () => {
-  const { state } = useContext(Context)
+  const { state } = useContext(FormContext)
   const { isLoading, mainError } = state
 
   return (
