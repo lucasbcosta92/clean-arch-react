@@ -10,3 +10,7 @@ export const setCurrentAccountAdapter = (account: AccountModel): void => {
 
   makeLocalSaveAdapter().set('account', account)
 }
+
+export const getCurrentAccountAdapter = (): AccountModel => {
+  return makeLocalSaveAdapter().get('account')
+}
