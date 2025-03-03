@@ -1,11 +1,15 @@
 import { ApiContext } from '@/presentation/contexts'
 import React, { useContext } from 'react'
-import { Navigate, Route, Routes, type RouteProps } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
-const PrivateRoute: React.FC<RouteProps> = (props: RouteProps) => {
+type PrivateRouteProps = {
+  element: JSX.Element
+}
+
+const PrivateRoute: React.FC<PrivateRouteProps> = ({ element }) => {
   const { getCurrentAccount } = useContext(ApiContext)
 
-  return getCurrentAccount()?.accessToken ? <Routes><Route {...props} /></Routes> : <Navigate to="/login" />
+  return getCurrentAccount()?.accessToken ? element : <Navigate to="/login" />
 }
 
 export default PrivateRoute
