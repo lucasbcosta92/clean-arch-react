@@ -65,8 +65,8 @@ describe('Login page', () => {
 
     makeSut({ validationError })
 
-    Helper.testChildCount('form-status', 0)
-    Helper.testButtonIsDisabled('submit', true)
+    expect(screen.getByTestId('form-status').children).toHaveLength(0)
+    expect(screen.getByTestId('submit')).toBeDisabled()
     Helper.testStatusForField('email', validationError)
     Helper.testStatusForField('password', validationError)
   })
@@ -110,7 +110,7 @@ describe('Login page', () => {
 
     Helper.populateField('email')
     Helper.populateField('password')
-    Helper.testButtonIsDisabled('submit', false)
+    expect(screen.getByTestId('submit')).toBeEnabled()
   })
 
   test('should show spinner on submit', async () => {
@@ -118,7 +118,7 @@ describe('Login page', () => {
 
     await simulateValidSubmit()
 
-    Helper.testElementExists('spinner')
+    expect(screen.queryByTestId('spinner')).toBeInTheDocument()
   })
 
   test('should call Authentication with correct values', async () => {
@@ -160,8 +160,8 @@ describe('Login page', () => {
 
     await simulateValidSubmit()
 
-    Helper.testElementText('main-error', error.message)
-    Helper.testChildCount('form-status', 1)
+    expect(screen.getByTestId('main-error')).toHaveTextContent(error.message)
+    expect(screen.getByTestId('form-status').children).toHaveLength(1)
   })
 
   test('should call SaveAccessToken on success', async () => {
