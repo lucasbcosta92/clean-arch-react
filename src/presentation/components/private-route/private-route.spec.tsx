@@ -18,7 +18,7 @@ const makeSut = (account = mockAccountModel()): SutTypes => {
   render(
     <ApiContext.Provider value={{ getCurrentAccount: () => account }}>
       <Router navigator={history} location={history.location}>
-        <PrivateRoute />
+        <PrivateRoute element={<div />} />
       </Router>
     </ApiContext.Provider>
   )
