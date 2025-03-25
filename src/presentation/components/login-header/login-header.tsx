@@ -4,7 +4,7 @@ import React, { memo } from 'react'
 
 const LoginHeader: React.FC = () => {
   return (
-    <header className='header'>
+    <header className='header-wrap'>
       <h1>Clean Arch</h1>
     </header>
   )

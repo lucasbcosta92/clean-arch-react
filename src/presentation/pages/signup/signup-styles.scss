@@ -4,10 +4,11 @@
 @import '../../components/login-header/login-header-styles.scss';
 @import '../../components/spinner/spinner-styles.scss';
 
-.signup {
+.signup-wrap {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  justify-content: space-between;
+  min-height: 100vh;
 
   .form {
     align-self: center;

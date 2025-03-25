@@ -7,7 +7,7 @@ import { type AuthenticationParams, type Authentication } from '@/domain/use-cas
 export class RemoteAuthentication implements Authentication {
   constructor (
     private readonly url: string,
-    private readonly httpPostClient: HttpPostClient<AuthenticationParams, AccountModel>
+    private readonly httpPostClient: HttpPostClient<AccountModel>
   ) {}
 
   async auth ({ email, password }: AuthenticationParams): Promise<AccountModel> {
