@@ -1,11 +1,21 @@
 import './survey-list-styles.scss'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Footer, Header } from '@/presentation/components'
 import { SurveyItemEmpty } from '@/presentation/pages/survey-list/components'
 
-const SurveyList: React.FC = () => {
+import { type LoadSurveyList } from '@/domain/use-cases'
+
+type Props = {
+  loadSurveyList: LoadSurveyList
+}
+
+const SurveyList: React.FC<Props> = ({ loadSurveyList }: Props) => {
+  useEffect(() => {
+    (async function () { loadSurveyList.loadAll() })()
+  }, [])
+
   return (
     <div className='survey-list-wrap'>
       <Header />
