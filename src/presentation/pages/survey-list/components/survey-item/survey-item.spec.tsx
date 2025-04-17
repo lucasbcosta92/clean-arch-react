@@ -4,14 +4,18 @@ import { render, screen } from '@testing-library/react'
 import { SurveyItem } from '@/presentation/pages/survey-list/components'
 import { mockSurveyModel } from '@/domain/test'
 
+const makeSut = (survey = mockSurveyModel()): void => {
+  render(<SurveyItem survey={survey} />)
+}
+
 describe('SurveyItem', () => {
   test('should render with correct values', () => {
-    const survey = mockSurveyModel()
+    const survey = Object.assign(mockSurveyModel(), {
+      didAnswer: true,
+      date: new Date('2025-01-16T00:00:00')
+    })
 
-    survey.didAnswer = true
-    survey.date = new Date('2025-01-16T00:00:00')
-
-    render(<SurveyItem survey={survey} />)
+    makeSut(survey)
 
     expect(screen.getByTestId('status')).toHaveTextContent('Lido')
     expect(screen.getByTestId('day')).toHaveTextContent('16')
