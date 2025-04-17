@@ -16,7 +16,7 @@ const SurveyItem: React.FC<Props> = ({ survey }: Props) => (
       </span>
       <time>
         <span data-testid="day" className='day'>
-          {survey.date.getDate()}
+          {survey.date.getDate().toString().padStart(2, '0')}
         </span>
         <span data-testid="month" className='month'>
           {survey.date.toLocaleString('pt-BR', { month: 'short' }).replace('.', '')}
