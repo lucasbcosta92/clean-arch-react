@@ -23,4 +23,19 @@ describe('SurveyItem', () => {
     expect(screen.getByTestId('year')).toHaveTextContent('2025')
     expect(screen.getByTestId('question')).toHaveTextContent(survey.question)
   })
+
+  test('should render with correct values', () => {
+    const survey = Object.assign(mockSurveyModel(), {
+      didAnswer: false,
+      date: new Date('2025-03-02T00:00:00')
+    })
+
+    makeSut(survey)
+
+    expect(screen.getByTestId('status')).toHaveTextContent('Não lido')
+    expect(screen.getByTestId('day')).toHaveTextContent('02')
+    expect(screen.getByTestId('month')).toHaveTextContent('mar')
+    expect(screen.getByTestId('year')).toHaveTextContent('2025')
+    expect(screen.getByTestId('question')).toHaveTextContent(survey.question)
+  })
 })
