@@ -2,16 +2,30 @@ import './survey-item-styles.scss'
 
 import React from 'react'
 
-const SurveyItem: React.FC = () => (
+import { type SurveyModel } from '@/domain/models'
+
+type Props = {
+  survey: SurveyModel
+}
+
+const SurveyItem: React.FC<Props> = ({ survey }: Props) => (
   <li className='survey-item-wrap'>
     <div className='survey-content'>
-      <span className="status">Lido</span>
+      <span data-testid="status" className="status">
+        {survey.didAnswer ? 'Lido' : 'Não lido'}
+      </span>
       <time>
-        <span className='day'>27</span>
-        <span className='month'>01</span>
-        <span className='year'>2025</span>
+        <span data-testid="day" className='day'>
+          {survey.date.getDate()}
+        </span>
+        <span data-testid="month" className='month'>
+          {survey.date.toLocaleString('pt-BR', { month: 'short' }).replace('.', '')}
+        </span>
+        <span data-testid="year" className='year'>
+          {survey.date.getFullYear()}
+        </span>
       </time>
-      <p>Como vc refatora seus codigos?</p>
+      <p data-testid="question">{survey.question}</p>
     </div>
     <footer>Ver resultado</footer>
   </li>
